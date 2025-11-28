@@ -18,7 +18,7 @@
 * 🎯 Superior Performance & Generalization: The proposed method outperforms or rivals fully-supervised models on in-distribution datasets (F1: 0.619) and demonstrates strong out-of-distribution generalization (F1: 0.285), while maintaining high robustness against social media compression (Facebook, Weibo, WeChat, WhatsApp) and complex quality degradations.
 
 ##  Introduction
-Official repository for the AAAI2026 paper *From Passive Perception to Active Memory: A Weakly Supervised Image Manipulation Localization Framework Driven by Coarse-Grained Annotations* [[paper]](https://arxiv.org/abs/2511.20359) 
+Official repository for the AAAI2026 paper “*From Passive Perception to Active Memory: A Weakly Supervised Image Manipulation Localization Framework Driven by Coarse-Grained Annotations*” [[paper]](https://arxiv.org/abs/2511.20359) 
 
 <div align="center">
     <img width="600" alt="image" src="Figures/figure1.jpg?raw=true">
