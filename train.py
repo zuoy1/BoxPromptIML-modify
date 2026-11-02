@@ -165,7 +165,7 @@ def train(train_loader, model, teacher_model, optimizer, epoch, save_path, write
             f.write('{} [Train Info]: Epoch [{:03d}/{:03d}], Loss_AVG: {:.4f}, Loss0_AVG: {:.4f}'.format(datetime.now(), epoch, opt.epoch, loss_all, loss0_all))
             f.write('\n')
         writer.add_scalar('Loss-epoch', loss_all, global_step=epoch)
-        if  epoch >= 10:
+        if epoch >= 1:
             torch.save(model.state_dict(), save_path + 'checkpoint-{}.pth'.format(epoch))
     except KeyboardInterrupt:
         print('Keyboard Interrupt: save model and exit.')

@@ -1,0 +1,38 @@
+"""Fixed GT-free feasibility specification; no reliability-score fusion."""
+from fecd.pseudo.cache_schema import canonical_hash
+
+PROTOCOL = {
+    'version': 'fecd-reference-feasibility-v1',
+    'selection': 'new_dev per dataset ascending sample_key first min(16,n)',
+    'roles_allowed': ['student_train', 'new_dev'],
+    'gt_allowed': False,
+    'work': 'native RGB; no upscale; longest edge at most512; AREA; preserve aspect',
+    'patch_sizes': [64, 32], 'primary_patch_size': 64,
+    'anchor_sampling': 'each category at most16 uniform linspace grid-order indices; union deduplicated; controls at most16 equally spaced eligible indices; full reference pool retained',
+    'patch_stride': 'size/2 with final inbounds edge anchor; no padded patch',
+    'residual': 'signed gray minus median3 on work grid; median REPLICATE; Gaussian/Sobel REFLECT_101; crop2 patchborder',
+    'quantiles': [i/20 for i in range(1,20)],
+    'reference': {'outside_box_dilation_224': 5, 'outside_fraction': 1.0,
+                  'maximum_positive_fraction': .05, 'minimum_stable_negative_fraction': .9,
+                  'stable_c_sam': .9, 'stable_variance': .01},
+    'candidate': {'pos_min': .75, 'neg_max': .25, 'box_inside_min': .75,
+                  'box_edge_open_interval': [.05, .95]},
+    'matching': {'brightness_absolute': .10, 'gradient_ratio': 1.5,
+                 'texture_ratio': 1.5, 'content_epsilon': .005,
+                 'minimum_references': 3, 'maximum_references': 5,
+                 'overlap': 'none between candidate/reference and between retained references',
+                 'ordering': 'normalized content discrepancy then patch id; no distance preference'},
+    'statistic': {'primary': 'median_ref(mean(abs(candidate_q-ref_q))/(.005+(candidate_MAD+ref_MAD)/2))',
+                  'secondary': ['raw_quantile_W1_proxy','absolute_log_MAD_ratio_eps.001'],
+                  'interpretation': 'two-region inconsistency; no correctness or tampering direction'},
+    'negative_control': 'eligible reference patches as anchors; same gates; still not GT-verified natural',
+    'gates': {'stop_if_image_no_matched_candidate_fraction_gt': .5,
+              'stop_if_target_unmatched_fraction_gt': .5,
+              'stop_if_controls_overlap': '>=50% image-macro positive/box target statistics <= within-image control q95, with >=10 images paired',
+              'texture_dominance_flag': 'abs pooled Spearman(stat, gradient or texture discrepancy)>=.7 with >=30 pairs',
+              'format_resolution_flag': 'median ratio>=4 with >=10 valid rows per stratum; descriptive confounded',
+              'failure': 'identity/alignment failure BLOCKED; no threshold rescue'},
+    'sensitivity': '32 only; never substitutes main64 result',
+    'output': 'GT-free mechanism only; no TP/FP,AUROC,risk-coverage or new confidence scores',
+}
+PROTOCOL_HASH = canonical_hash(PROTOCOL)

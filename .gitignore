@@ -1,0 +1,101 @@
+# ---------------------------------------------------------------------------
+# BoxPromptIML / FECD: code goes to GitHub; data, weights, caches and run
+# outputs are transferred separately. This file is intentionally conservative:
+# it only excludes generated, large, private or machine-local files.
+# ---------------------------------------------------------------------------
+
+# Python bytecode / packaging
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.venv/
+venv/
+env/
+
+# Jupyter, editors and OS metadata
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Secrets / credentials (never commit these)
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.ssh/
+auth.json
+.npmrc
+.hycloud_ossutil_config
+credentials*
+secrets*
+
+# FECD experimental assets: boxes, K1/K8 caches, evidence caches,
+# checkpoints, per-image diagnostics, logs and generated reports.
+# Transfer this directory separately (see MIGRATION.md §6).
+/fecd/assets/
+/fecd_runs/
+
+# Dataset / weight / checkpoint / run roots. Anchored patterns keep
+# fecd/datasets/ (source code) and other in-tree code directories tracked.
+/runs/
+/checkpoints/
+/weights/
+/datasets/
+/data/
+/raw/
+/processed/
+/segment-anything/
+
+# Large model / tensor / archive formats
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.mat
+*.tar
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.tar.xz
+*.gz
+*.zip
+*.7z
+*.rar
+
+# Generated logs and run records (inside tracked code trees too)
+*.log
+*.jsonl
+
+# Migration bundle is a 5 MB binary snapshot of the original history and is
+# redundant once the repository history is pushed; keep the text files.
+/migration/BoxPromtIML-git.bundle
+
+# Vendored TinyViT backup files and compiled artifacts
+TinyViT/models/tiny_vit.py.bak

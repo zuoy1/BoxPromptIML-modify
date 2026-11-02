@@ -1,0 +1,61 @@
+# Git state captured/re-verified 2026-11-02 14:37 CST (A server)
+# The tracked source state is unchanged from the 2026-10-27 snapshot.
+
+## HEAD
+2b5b7c8baeb8b54d958a8ded022c1d34c420f257
+
+## Branch
+main
+
+## Remote
+origin	https://github.com/vpsg-research/BoxPromtIML.git (fetch)
+origin	https://github.com/vpsg-research/BoxPromtIML.git (push)
+
+## Status (2026-11-02)
+ M eval.py
+ M train.py
+ M utils/__pycache__/data_val.cpython-310.pyc
+ M utils/__pycache__/utils.cpython-310.pyc
+?? MIGRATION.md
+?? TinyViT/
+?? __pycache__/
+?? fecd/
+?? migration/
+?? segment-anything/
+
+## Log
+2b5b7c8 (HEAD -> main, origin/main, origin/HEAD) Update README.md
+aea2b40 Add files via upload
+5a29822 Initial commit
+
+## Diff stat
+ eval.py                                    | 193 +++++++++++++++++++++--------
+ train.py                                   |   2 +-
+ utils/__pycache__/data_val.cpython-310.pyc | Bin 10270 -> 10268 bytes
+ utils/__pycache__/utils.cpython-310.pyc     | Bin 2362 -> 2365 bytes
+ 4 files changed, 143 insertions(+), 52 deletions(-)
+
+## Diff numstat (tracked, text)
+142	51	eval.py
+1	1	train.py
+
+## Untracked content sizes (2026-11-02)
+970721		TinyViT/
+6434213674	fecd/ (of which fecd/assets = 6432406786)
+0		segment-anything/ (only one symlink)
+~44K		__pycache__/
+5064333		migration/
+~80K		MIGRATION.md
+
+## Notes
+- 未执行 git add/commit/push。
+- eval.py、train.py 的本地修改见 migration/code-local-changes.patch；该 patch 与当前工作树逐字一致。
+- utils/__pycache__/*.pyc 的改动是运行时字节码，已从 patch 中排除。
+- MIGRATION.md、TinyViT/、fecd/、segment-anything/、migration/ 未跟踪；fecd/ 是个人新增研究代码和产物。
+- 原仓库 HEAD 2b5b7c8 与 origin/main 一致；不要把迁移资料或 fecd/ 误提交到公开仓库，除非你明确决定。
+- 2026-11-02 复核：`git bundle verify` 通过；197 个 fecd 单元测试在 CPU 上通过。
+
+## GitHub staging (2026-11-02)
+- 已创建 .gitignore，并按 GitHub 迁移范围暂存（285 additions / 7 pyc deletions）。
+- utils/__pycache__/*.pyc 仅从 Git 索引移除，工作区文件仍保留。
+- 未 commit、未 push；origin 未改动。

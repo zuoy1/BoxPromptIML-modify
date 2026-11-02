@@ -1,0 +1,28 @@
+优先级	路径	字节	人类可读	文件数/链接数	内容	迁移方式	适合上传GitHub
+P0	/home/projects/BoxPromtIML（不含 fecd/assets、migration）	13681236	13.0 MiB	约 300 文件	原仓库源码、.git、TinyViT、个人 fecd 代码/文档/配置、Figures	同路径恢复；或 git bundle + patch + 拷贝未跟踪目录	是（源码/文档/配置；不要提交二进制产物）
+P0	/home/projects/BoxPromtIML/fecd/assets/stage2c_cache	642968295	613 MiB	11474 NPZ + 索引/配置	K=1/K=8 SAM cache（4F1/P0-P3F 训练直接使用）	单独传输；保留目录名和 config hash	否
+P0	/home/projects/BoxPromtIML/fecd/assets/boxes_train.json	4577020	4.4 MiB	1 文件	5,737 条固定 Box（4F1/P0-P3F 训练直接使用）	随 fecd assets 传输；校验 SHA256	否
+P0	/home/projects/BoxPromtIML/fecd/assets/stage3ra_split_manifest.json、stage3ra_split_audit.json、stage3ra_acceptance.json	3296540	3.1 MiB	3 文件	student_train 3,530 / new_dev 530 / new_confirm 530 的冻结派生划分	必须随代码/配置迁移；用于重建 4F1 membership	否
+P0	/hy-tmp/BoxPromtIML/fecd_runs/stage4f1/formal20_seed20261029_noshutdown_20261029a	1078402850	1.00 GiB	395 文件	4F1 正式 20 epoch 四组 final.pt/last.pt、逐 epoch 日志、评估、配对统计、失败案例	单独传输；保持 run_id 和目录结构；校验 final.pt SHA256	否
+P0	/home/datasets/raw	9093879098	8.47 GiB	23827 文件	CASIAv2/NIST16/Columbia/Coverage/CASIAv1 原始图像与 GT	单独传输；保持目录名与大小写；不要解引用软链	否
+P0	/home/datasets/processed	69632888	66.4 MiB	7219 文件 + 30787 链接	paper-scale/preflight split、C1 test GT、Coverage 修正 mask	与 raw 一起传输；必须保留符号链接（tar/rsync -a）	否
+P0	/home/datasets/patches、/home/datasets/scripts	173631	170 KiB	36 文件	Coverage revised masks、数据构建/校验脚本	随 datasets 一起	可选（不含敏感信息）
+P0	/home/weights	2586263181	2.41 GiB	2 文件	SAM ViT-H 2.4G；TinyViT 5M 21M	单独传输；校验 SHA256	否
+P0	/home/runs	597742274	570 MiB	2340 文件 / 32 链接	原仓库正式训练 checkpoint 1-20、日志、旧 eval masks/scores、NIST16 诊断	单独传输；checkpoint 目录不要改名（eval.py 硬编码）	否
+P1	/home/datasets/boxprompt-smoke、/home/datasets/boxprompt-casia16	23624	23 KiB	8 文件 + 32 链接	smoke 测试数据与 CASIA16 软链样本（fecd 测试使用）	随 datasets 一起；保留软链	否
+P1	/home/projects/BoxPromtIML/fecd/assets/stage3_evidence	4154029014	3.87 GiB	5737 NPZ + 审计	阶段 3 的 GT-free 取证证据 raw cache	单独传输；用于复现阶段 3/3R，不是 4F1 训练硬依赖	否
+P1	/home/projects/BoxPromtIML/fecd/assets/stage3_diagnostics 等 stage3ra_*、stage3rb0	301889883	287.9 MiB	约 100 文件	阶段 3/3R/3R-A/3R-B0 诊断、逐图分数、split/协议/审计	随 fecd assets 传输；保留 JSON/JSONL	否
+P1	/home/projects/BoxPromtIML/fecd/assets/stage4p	571304066	545 MiB	约 30 文件	阶段 4P 四组 8-update smoke 的完整 checkpoint 和日志	单独传输；历史工程基线	否
+P1	/home/projects/BoxPromtIML/fecd/assets/stage4f0	609680126	581 MiB	约 40 文件	阶段 4F0 四组单 epoch checkpoint、严格评估、选择审计	单独传输；历史开发基线	否
+P1	/home/projects/BoxPromtIML/fecd/assets/stage4f1	104716945	99.9 MiB	约 30 文件	阶段 4F1 早期中断的 P0 部分训练（last.pt + epoch1-5 日志）；不是正式 final	单独传输；不要与 /hy-tmp 的正式 partial 混淆	否
+P1	/home/projects/BoxPromtIML/fecd/assets/stage4f1_v	8641740	8.2 MiB	约 15 文件	4F1-V 独立 float32 复验报告、validation_v2、交付清单	随项目传输；保存 FAILED→补充 PASS 的证据链	可选（文本）
+P1	/hy-tmp/BoxPromtIML/fecd_runs/stage5a/diagnosis_20261030	1190146305	1.11 GiB	2728 文件	阶段 5A 530 图 CPU 诊断概率图、逐图/分组/阈值统计、12 个案例、报告构建脚本	单独传输；若省略需重跑 CPU 诊断，耗时且可能改变数值路径	否
+P1	/home/projects/BoxPromtIML/migration	5064333	4.8 MiB	约 20 文件	本迁移说明、环境文件、bundle、patch、校验和、verify_paths	随项目传输；保留 MIGRATION.md	是（文本）
+P1	/home/projects/segment-anything-main	22709787	21.7 MiB	93 文件	SAM 源码（本机 pip 安装来源）	可随项目；或 B 上重新 pip install GitHub	否（第三方源码）
+P1	/home/note.md、/home/deep-research-report.md、/home/conversation_20261026.md	87173	85 KiB	3 文件	FECD 任务说明、研究设计、迁移对话记录	随项目文档或单独小文件传输	否（研究隐私）
+P1	/home/checkpoints	1572	1.5 KiB	4 文件	旧 smoke 训练日志（无 checkpoint）	可选	否
+P2	/home/projects/TinyViT-main.zip	657626	642 KiB	1 文件	TinyViT 原始 zip（项目内已有解压版）	可选/可省略	否
+P2	/home/projects/BoxPromtIML/fecd/assets/stage2b_smoke、stage2c_anomaly_visualizations、stage2c_cache_statistics.csv、stage2c_preflight_comparison、stage2c_cache_run.log	约 20000000	约 19 MiB	—	阶段 2B/2C 的 smoke、可视化、统计和生成日志	可选；用于溯源，不是训练硬依赖	否
+P2	/usr/local/miniconda3/envs/boxpromptiml	5761765260	5.4 GiB	—	Conda 环境（平台相关）	不要复制；用 migration/install-env.sh 重建	否
+合计	不含 conda 环境；含全部 P1/P2 可选产物	21095752612	约 19.65 GiB	—	代码 + 数据 + 权重 + home runs + /hy-tmp fecd_runs + fecd assets + 小文件	按优先级分批传输；P0 必需，P1 用于完整科研状态	—
+禁止迁移	/root/.ssh、/root/.codex/auth.json、/root/.hycloud_ossutil_config、/root/.npmrc、/root/.vscode-server	—	—	—	凭据/缓存/IDE 服务	禁止打包或上传	否

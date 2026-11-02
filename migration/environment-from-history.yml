@@ -1,0 +1,10 @@
+name: boxpromptiml
+channels:
+  - https://mirrors.bfsu.edu.cn/anaconda/cloud/pytorch
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main
+  - defaults
+dependencies:
+  - pip
+  - python=3.10
+prefix: /usr/local/miniconda3/envs/boxpromptiml

@@ -1,0 +1,47 @@
+{
+  "plan": {
+    "status": "frozen proposal; not authorized or executed",
+    "seed": 20261029,
+    "epochs": 20,
+    "batch_size": 4,
+    "drop_last": false,
+    "steps_per_epoch": 883,
+    "updates_per_variant": 17660,
+    "main_variants": [
+      "P0",
+      "P1",
+      "P2F",
+      "P3F"
+    ],
+    "main_comparisons": [
+      "P1-P0",
+      "P2F-P1",
+      "P3F-P2F"
+    ],
+    "supplement": "P2E dynamic random separately registered; future explicit authorization required",
+    "checkpoint": "epoch20 final; no per-method best-dev epoch selection",
+    "hyperparameters": {
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0.0,
+      "clip_norm": 0.5,
+      "precision": "float32",
+      "scheduler": "constant"
+    },
+    "initialization": "fresh 4P strategy from local TinyViT+common seeded student layers; not preflight state",
+    "evaluation_protocol_hash": "54baa31ac65ec3df978af09c43b2454fd5515db1c8117b86c6ff2cd7d267416f",
+    "stop_rules": {
+      "technical_failures": "order dependence,GT training access,identity/budget mismatch,NaN,resume mismatch -> BLOCKED",
+      "segmentation_risk": "new_dev >=50% images zero area or area>=.99 AND image-macro F1<=.05 -> stop formal request",
+      "numeric_saturation": "new_dev >=90% images probability mean<=.01 or>=.99 -> stop formal request",
+      "no_tuning": "no loss/lr/threshold changes based on preflight results"
+    },
+    "seeds": "one common seed only; additional seeds require equal authorization for all main variants",
+    "locked": "new_confirm,teacher_diag,IND/OOD tests; historical5737 B0 not comparable"
+  },
+  "plan_hash": "8b25d14ae1d90c00db59e5794eaff4d038f82829f63abbd1513404923e8d46d2"
+}

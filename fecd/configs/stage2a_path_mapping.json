@@ -1,0 +1,16 @@
+{
+  "purpose": "stage2a_read_only_manifest_resolution",
+  "do_not_use_as_student_dataset": true,
+  "contains_ground_truth_paths": true,
+  "prefix_mappings": [
+    {
+      "from": "/hy-tmp/datasets",
+      "to": "/home/datasets",
+      "apply_only_to_paths_declared_in_existing_manifests": true,
+      "require_image_sha256_validation": true,
+      "require_decoded_dimensions_validation": true
+    }
+  ],
+  "identity_rule": "Join by dataset plus sample id in the existing manifests; verify image bytes using recorded SHA256. Never infer pairing from stem or sorted position.",
+  "student_training_rule": "This audit mapping includes GT locations, including locked test GT. FECD student datasets must not read this file. Build a separate train-only image/cache index after offline box export."
+}

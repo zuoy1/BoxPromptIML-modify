@@ -1,0 +1,13 @@
+{
+  "status": "SHUTDOWN_NOT_VERIFIED",
+  "reason": "Docker instance; candidate platform shutdown ELF not executed; official stop, billing and data retention semantics remain unverified",
+  "candidate_executable": "/usr/local/bin/shutdown",
+  "candidate_sha256": "30b9ea6f23173078ccfe57d9b15ffe8caf5ba1442477f32c2c170ea0e97771d7",
+  "official_provider_identity_verified": false,
+  "platform_stop_verified": false,
+  "gpu_billing_stop_verified": false,
+  "data_persistence_verified": false,
+  "long_shutdown_retention_verified": false,
+  "shutdown_on_failure_default": false,
+  "execute_unattended_training": false
+}

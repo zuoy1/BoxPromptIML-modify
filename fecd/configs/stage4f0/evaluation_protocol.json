@@ -1,0 +1,38 @@
+{
+  "protocol": {
+    "version": "stage4f0-strict-newdev-v1",
+    "role": "new_dev",
+    "images": 530,
+    "batch_size": 1,
+    "seed": 20261029,
+    "threshold": 0.5,
+    "preprocessing": "PIL RGB BILINEAR224 ImageNet mean/std; no augmentation",
+    "probability": "sigmoid raw logits; no min-max",
+    "gt": "verified native binary0/255; NEAREST224; >127",
+    "empty_both_f1_iou": 1.0,
+    "empty_one_f1_iou": 0.0,
+    "memory": "independent model; restore checkpoint memory before EACH image",
+    "primary": "new_dev image-macro PixelF1",
+    "secondary": [
+      "IoU",
+      "per-domain",
+      "dataset-equal",
+      "micro"
+    ],
+    "near_full_area": 0.99,
+    "abnormal_high_area": 0.95,
+    "abnormal_low_area": 0.001,
+    "near_zero_area": 0.01,
+    "probability_saturation_low": 0.01,
+    "probability_saturation_high": 0.99,
+    "confirmation_access": false,
+    "meaning": "development engineering loop, not independent confirmation"
+  },
+  "protocol_hash": "54baa31ac65ec3df978af09c43b2454fd5515db1c8117b86c6ff2cd7d267416f",
+  "stop_rules": {
+    "technical_failures": "order dependence,GT training access,identity/budget mismatch,NaN,resume mismatch -> BLOCKED",
+    "segmentation_risk": "new_dev >=50% images zero area or area>=.99 AND image-macro F1<=.05 -> stop formal request",
+    "numeric_saturation": "new_dev >=90% images probability mean<=.01 or>=.99 -> stop formal request",
+    "no_tuning": "no loss/lr/threshold changes based on preflight results"
+  }
+}

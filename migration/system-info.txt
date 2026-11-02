@@ -1,0 +1,108 @@
+# System / environment snapshot captured 2026-11-02 14:37 CST (A server)
+# Re-verified after the FECD stage 3-5A work; environment itself is unchanged since 2026-10-27.
+
+## date
+2026-11-02T14:37:59+08:00
+
+## os-release
+NAME="Ubuntu"
+VERSION="20.04.6 LTS (Focal Fossa)"
+ID=ubuntu
+PRETTY_NAME="Ubuntu 20.04.6 LTS"
+VERSION_ID="20.04"
+VERSION_CODENAME=focal
+
+## kernel
+Linux 5.4.0-204-generic #224-Ubuntu SMP Thu Dec 5 13:38:28 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+
+## container
+-rwxr-xr-x 1 root root 0 Oct 23 11:12 /.dockerenv
+
+## cpu
+64 vCPU
+model name	: AMD EPYC 7542 32-Core Processor
+
+## memory
+              total        used        free      shared  buff/cache   available
+Mem:          251Gi        15Gi        20Gi       1.9Gi       216Gi       232Gi
+Swap:            0B          0B          0B
+
+## disk (2026-11-02)
+Filesystem     Type     Size  Used Avail Use% Mounted on
+overlay        overlay   30G   22G  8.9G  71% /
+/dev/nvme0n1   xfs       50G  2.2G   48G   5% /hy-tmp
+
+## gpu (proc driver)
+Model: 		 NVIDIA GeForce RTX 4090
+GPU UUID: 	 GPU-530e734d-3947-8b9b-febb-68a29ef633d5
+Bus Location: 	 0000:c2:00.0
+Device Minor: 	 1
+
+## nvidia-smi
+No devices were found
+
+## nvidia driver
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  535.230.02  Fri Dec 20 21:42:05 UTC 2024
+GCC version:  gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2)
+
+## nvcc
+Cuda compilation tools, release 12.1, V12.1.105
+Build cuda_12.1.r12.1/compiler.32688072_0
+
+## conda
+conda 24.1.2
+# conda environments:
+#
+base                     /usr/local/miniconda3
+boxpromptiml             /usr/local/miniconda3/envs/boxpromptiml
+
+## env python/torch (2026-11-02 复核)
+python 3.10.22
+executable /usr/local/miniconda3/envs/boxpromptiml/bin/python
+torch 2.2.1+cu121
+torchvision 0.17.1+cu121
+torch.version.cuda 12.1
+torch.cuda.is_available() False
+torch.cuda.device_count() 0
+cudnn.version 8902
+
+## key packages
+numpy==1.26.4
+opencv-python-headless==4.9.0.80
+timm==0.9.12
+albumentations==1.3.1
+tensorboardX==2.6.5
+scikit-learn==1.7.2
+scipy==1.15.3
+Pillow==12.3.0
+thop==0.1.1-2209072238
+segment-anything==1.0
+tqdm==4.70.1
+PyYAML==6.0.3
+pip==26.2.1
+
+## pip check
+No broken requirements found.
+
+## environment size
+5.5G	/usr/local/miniconda3/envs/boxpromptiml
+
+## disk usage of project data (du -sb, bytes)
+6451152355	/home/projects/BoxPromtIML
+6432406786	/home/projects/BoxPromtIML/fecd/assets
+18745569	/home/projects/BoxPromtIML (excluding fecd/assets)
+9163709381	/home/datasets
+9093879098	/home/datasets/raw
+69632888	/home/datasets/processed
+2586263181	/home/weights
+597742274	/home/runs
+2273429263	/hy-tmp/BoxPromtIML
+1572	/home/checkpoints
+5064333	/home/projects/BoxPromtIML/migration
+
+## symlink summary
+30787 symlinks under /home/datasets (all currently point through /hy-tmp/datasets,
+which is absent on A; 0 failures when /hy-tmp/datasets is mapped to /home/datasets).
+1 symlink in project: segment-anything/sam_vit_h_4b8939.pth -> /hy-tmp/weights/...
+1 symlink in torch hub: ~/.cache/torch/hub/checkpoints/tiny_vit_5m_22kto1k_distill.pth
+  -> /hy-tmp/weights/...

@@ -1,0 +1,27 @@
+{
+  "authorization": "user authorized four groups, seed20261029, twenty epochs each; no additional seeds",
+  "formal_proposal_hash": "8b25d14ae1d90c00db59e5794eaff4d038f82829f63abbd1513404923e8d46d2",
+  "evaluation_protocol_hash": "54baa31ac65ec3df978af09c43b2454fd5515db1c8117b86c6ff2cd7d267416f",
+  "membership_hash": "cc98c8c0222ecf20d6ba887fafa954eff07983b6fa360a43c5e0057757e50110",
+  "statistics": {
+    "seed": 20261029,
+    "repeats": 2000,
+    "ci": "percentile 2.5/97.5",
+    "sampling": "paired source proxy groups WITHIN each dataset; retain all images in sampled group",
+    "group_identity": "dataset plus source_group_id",
+    "weights": [
+      "image_weighted",
+      "group_equal",
+      "dataset_equal"
+    ],
+    "comparisons": [
+      "P1-P0",
+      "P2F-P1",
+      "P3F-P2F"
+    ],
+    "meaning": "conditional single-training-seed development uncertainty, not seed stability or confirmation",
+    "severe_overprediction": "predicted area >= 0.20 AND >= 3 times GT area; descriptive only",
+    "failure_case": "F1 <= 0.10; descriptive only",
+    "intermediate_dev_evaluations": 0
+  }
+}

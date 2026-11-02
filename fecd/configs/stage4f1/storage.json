@@ -1,0 +1,9 @@
+{
+  "schema": "stage4f1-storage-v1",
+  "output_root": "/hy-tmp/BoxPromtIML/fecd_runs/stage4f1",
+  "previous_output_root": "/home/projects/BoxPromtIML/fecd/assets/stage4f1",
+  "change_reason": "User-authorized 4F1-S storage audit; new artifacts go directly to verified data mount",
+  "training_protocol_changed": false,
+  "historical_artifacts_migrated": false,
+  "training_execution_authorized_by_this_file": false
+}
