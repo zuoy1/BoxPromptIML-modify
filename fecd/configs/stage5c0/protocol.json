@@ -1,0 +1,20 @@
+{
+  "stage":"5C0","seed":20261029,"variants":["R0","R1"],
+  "max_epochs":1,"images":3530,"batch_size":4,"drop_last":false,"steps_per_epoch":883,
+  "cache_schema":"fecd-sam-cache-v2","teacher_k":8,"hard_target":"float32(mu)>=0.5",
+  "positive":"fixed random floor(n_pos/2), epoch-independent, identical R0/R1",
+  "negative_regions":"hard-negative AND canonical weak-Box union; hard-negative AND complement",
+  "negative_budget":"floor(n_region/2) each image each region; zero/one selects zero; no redistribution",
+  "R0":"epoch-keyed random priorities independently per negative region",
+  "R1":"descending current post-forward sigmoid probability, detached; epoch-keyed deterministic random ties per region",
+  "geometry":"same frozen 4F1 six discrete operations; inverse logits to canonical, select, forward-transform mask",
+  "loss":"unchanged per-image 0.5 selected-positive mean +0.5 selected-negative mean; empty class zero",
+  "optimizer":{"name":"Adam","lr":0.0001,"betas":[0.9,0.999],"eps":1e-8,"weight_decay":0},
+  "clip_norm":0.5,"precision":"FP32","lr_schedule":"constant",
+  "initialization":"fresh common seeded original model and local TinyViT; historical final forbidden",
+  "probe":"independent fresh model trajectory: first batch update, save, uninterrupted next batch vs disk-restored next batch; discarded before full epoch",
+  "evaluation":"none in5C0; new_dev independent evaluator reserved for5C1",
+  "cross_epoch_diagnostic":"epoch0/1 mask changes under same detached student-output snapshot; not a second training epoch",
+  "diagnostic_distributions":"count,mean,min,q10,q50,q90,max of mu,var,c_sam,student probability and BCE; inside/outside selected/unselected; no GT",
+  "stopping":"nonfinite outputs/loss/gradient/parameters; budget mismatch; access breach; non-exact resume; unexplained empty supervision; no performance selection"
+}
